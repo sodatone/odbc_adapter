@@ -61,7 +61,7 @@ module ActiveRecord
         driver.attrs = attrs
 
         connection = odbc_module::Database.new.drvconnect(driver)
-        connection.use_utc = true
+        connection.use_utc = true # As per documentation http://www.ch-werner.de/rubyodbc/odbc.html.
         # encoding_bug indicates that the driver is using non ASCII and has the issue referenced here https://github.com/larskanis/ruby-odbc/issues/2
         [connection, config.merge(driver: driver, encoding: attrs['ENCODING'], encoding_bug: attrs['ENCODING'] == 'utf8')]
       end
